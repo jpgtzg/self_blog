@@ -113,7 +113,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contributors
 
-If you have any questions, suggestions, or feedback, please feel free to open an issue or contact the project maintainer at your-email@example.com.
+If you have any questions, suggestions, or feedback, please feel free to open an issue or contact the project maintainer.
 
 
 <a href="https://github.com/jpgtzg/self_blog/graphs/contributors">
