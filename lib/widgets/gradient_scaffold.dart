@@ -8,14 +8,20 @@ class GradientScaffold extends StatelessWidget {
   final Widget body;
   final bool isCentered;
   final bool isInSafeArea;
+  final EdgeInsetsGeometry padding;
 
   const GradientScaffold({
     required this.gradient,
     required this.body,
     required this.isCentered,
     required this.isInSafeArea,
+    required this.padding,
     super.key,
   });
+
+  Widget getBody() {
+    return Padding(padding: padding, child: body);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +33,11 @@ class GradientScaffold extends StatelessWidget {
           ),
           isCentered
               ? Center(
-                  child: isInSafeArea ? SafeArea(child: body) : body,
+                  child: isInSafeArea ? SafeArea(child: getBody()) : getBody(),
                 )
               : isInSafeArea
-                  ? SafeArea(child: body)
-                  : body,
+                  ? SafeArea(child: getBody())
+                  : getBody(),
         ],
       ),
     );
