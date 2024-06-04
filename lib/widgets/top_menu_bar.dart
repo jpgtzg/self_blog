@@ -20,6 +20,7 @@ class TopMenuBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               BigText(titleText: "Welcome back", textAlign: TextAlign.center),
+              // TODO Add functionality
               Icon(
                 Icons.menu,
                 color: Colors.white,
