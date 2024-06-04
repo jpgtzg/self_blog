@@ -1,10 +1,9 @@
-// Written by Juan Pablo Gutiérrez
-// 3 06 2024
-
 import 'package:flutter/material.dart';
 import 'package:self_blog/constants.dart';
+import 'package:self_blog/system/realm_manager.dart';
 import 'package:self_blog/system/realm_models.dart';
 import 'package:self_blog/widgets/bacl_bar.dart';
+import 'package:self_blog/widgets/create_entry_button.dart';
 import 'package:self_blog/widgets/entry_box.dart';
 import 'package:self_blog/widgets/gradient_scaffold.dart';
 import 'package:self_blog/widgets/standard_spacer.dart';
@@ -18,6 +17,14 @@ class NoteScreen extends StatefulWidget {
 }
 
 class _NoteScreenState extends State<NoteScreen> {
+  void deleteEntry(int index) {
+    setState(() {
+      updateEntry(() {
+        widget.note.entries.removeAt(index);
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return GradientScaffold(
@@ -44,10 +51,39 @@ class _NoteScreenState extends State<NoteScreen> {
             child: ListView.builder(
               itemCount: widget.note.entries.length,
               itemBuilder: (context, index) {
-                return EntryBox(note: widget.note, index: index);
+                return Column(
+                  key: ValueKey(widget
+                      .note.entries[widget.note.entries.length - index - 1]),
+                  children: [
+                    EntryBox(
+                      note: widget.note,
+                      index: widget.note.entries.length - index - 1,
+                      parentUpdate: deleteEntry,
+                    ),
+                    const StandardSpacer(height: standartSpacerHeight),
+                  ],
+                );
               },
             ),
           ),
+          const StandardSpacer(height: standartSpacerHeight),
+          CreateEntryButton(
+            titleText: "Create Entry",
+            primaryColor: paleteLightBlue.withAlpha(75),
+            buttonColor: paleteBlue,
+            note: widget.note,
+            onTap: () {
+              setState(() {
+                updateEntry(() {
+                  widget.note.entries.add(
+                    Entry("${DateTime.now().hour} : ${DateTime.now().minute}",
+                        "", ""),
+                  );
+                });
+              });
+            },
+          ),
+          const StandardSpacer(height: standartSpacerHeight),
         ],
       ),
     );
