@@ -27,21 +27,38 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     notes = getNotes();
+    filteredNotes = notes;
+
+    if (notes.isEmpty) {
+      addNewNote();
+    }
   }
 
   void addNewNote() {
-    if (notes.last.date == DateTime.now().toString().substring(0, 10)) {
-      return;
+    if (notes.isNotEmpty) {
+      if (notes.last.date == DateTime.now().toString().substring(0, 10)) {
+        return;
+      }
     }
 
-    setState(() {
-      final newNote = Note(DateTime.now().toString().substring(0, 10));
-      write(newNote);
-      notes = getNotes();
-    });
+    // Check if widget is building
+    if (mounted) {
+      setState(() {
+        final newNote = Note(DateTime.now().toString().substring(0, 10));
+        write(newNote);
+        notes = getNotes();
+        filteredNotes = notes;
+      });
+    }
   }
 
   void onSearchTextChanged(String searchText) {
+    if (searchText.isEmpty) {
+      setState(() {
+        filteredNotes = notes;
+      });
+      return;
+    }
     setState(() {
       filteredNotes = notes
           .where((element) =>
