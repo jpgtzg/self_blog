@@ -21,6 +21,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Note> notes = [];
+  List<Note> filteredNotes = [];
 
   @override
   void initState() {
@@ -40,6 +41,15 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void onSearchTextChanged(String searchText) {
+    setState(() {
+      filteredNotes = notes
+          .where((element) =>
+              element.date.toLowerCase().contains(searchText.toLowerCase()))
+          .toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return GradientScaffold(
@@ -51,6 +61,20 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           const TopMenuBar(),
           const StandardSpacer(height: standartSpacerHeight),
+          TextField(
+            style: substitleStyle,
+            onChanged: onSearchTextChanged,
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(vertical: 12),
+              hintText: "Search",
+              hintStyle: defaultStyle,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+              prefixIcon: const Icon(Icons.search),
+            ),
+          ),
+          const StandardSpacer(height: standartSpacerHeight),
           CreateBlogbutton(
               titleText: "Write today's blog",
               primaryColor: paleteLightBlue.withAlpha(75),
@@ -60,16 +84,16 @@ class _HomeScreenState extends State<HomeScreen> {
           const StandardSpacer(height: standartSpacerHeight),
           Expanded(
             child: ListView.builder(
-              itemCount: notes.length,
+              itemCount: filteredNotes.length,
               itemBuilder: (context, index) {
                 return Column(
                   children: [
                     NoteCard(
-                      titleText: notes[index].date,
-                      widgetScreen: NoteScreen(note: notes[index]),
+                      titleText: filteredNotes[index].date,
+                      widgetScreen: NoteScreen(note: filteredNotes[index]),
                       primaryColor: paleteLightBlue.withAlpha(75),
                       buttonColor: paleteLightBlue.withAlpha(150),
-                      note: notes[index],
+                      note: filteredNotes[index],
                     ),
                     const StandardSpacer(height: standartSpacerHeight),
                   ],

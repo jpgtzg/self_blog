@@ -3,8 +3,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:self_blog/constants.dart';
-import 'package:self_blog/screen/note_screen.dart';
-import 'package:self_blog/system/realm_manager.dart';
 import 'package:self_blog/system/realm_models.dart';
 
 class CreateBlogbutton extends StatelessWidget {
@@ -26,20 +24,7 @@ class CreateBlogbutton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        onTap();
-        /* Note newNote = Note(
-          "${DateTime.now().day} / ${DateTime.now().month} / ${DateTime.now().year}",
-          entries: [],
-        );
-        write(newNote);
-         */
-        /* Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => NoteScreen(note: newNote)),
-        ); */
-      },
+      onTap: onTap(),
       child: AspectRatio(
         aspectRatio: 13 / 4,
         child: Container(

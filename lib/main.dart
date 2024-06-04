@@ -5,7 +5,6 @@
 import 'package:flutter/material.dart';
 import 'package:self_blog/screen/home_screen.dart';
 import 'package:self_blog/system/realm_manager.dart';
-import 'package:self_blog/system/realm_models.dart';
 
 void main() {
   initRealm();
@@ -18,7 +17,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Self Blog',
       debugShowCheckedModeBanner: false,
       home: HomeScreen(),
