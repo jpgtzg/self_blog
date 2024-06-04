@@ -29,14 +29,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void addNewNote() {
-    if (notes.last.date ==
-        "${DateTime.now().day} / ${DateTime.now().month} / ${DateTime.now().year}") {
+    if (notes.last.date == DateTime.now().toString().substring(0, 10)) {
       return;
     }
 
     setState(() {
-      final newNote = Note(
-          "${DateTime.now().day} / ${DateTime.now().month} / ${DateTime.now().year}");
+      final newNote = Note(DateTime.now().toString().substring(0, 10));
       write(newNote);
       notes = getNotes();
     });
