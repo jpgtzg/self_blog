@@ -68,10 +68,6 @@ class _NoteScreenState extends State<NoteScreen> {
           ),
           const StandardSpacer(height: standartSpacerHeight),
           CreateEntryButton(
-            titleText: "Create Entry",
-            primaryColor: paleteLightBlue.withAlpha(75),
-            buttonColor: paleteBlue,
-            note: widget.note,
             onTap: () {
               setState(() {
                 updateEntry(() {
