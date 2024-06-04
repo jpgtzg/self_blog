@@ -43,6 +43,35 @@ const TextStyle bigTextStyle = TextStyle(
   fontSize: 52,
 );
 
+const TextStyle noteEmotionHideTextStyle = TextStyle(
+  fontFamily: fontFamily,
+  fontWeight: FontWeight.bold,
+  color: Colors.grey,
+  fontSize: 25,
+);
+
+const TextStyle noteEntryHideTextStyle = TextStyle(
+  fontFamily: fontFamily,
+  fontWeight: FontWeight.bold,
+  color: Colors.grey,
+  fontSize: 18,
+);
+
+const TextStyle noteEmotionShowTextStyle = TextStyle(
+  fontFamily: fontFamily,
+  fontWeight: FontWeight.bold,
+  color: Colors.white,
+  fontSize: 25,
+);
+
+const TextStyle noteEntryShowTextStyle = TextStyle(
+  fontFamily: fontFamily,
+  fontWeight: FontWeight.bold,
+  color: Colors.white,
+  fontSize: 18,
+);
+
+
 /* Widget configuration */
 const double standartSpacerHeight = 30;
 
@@ -76,7 +105,6 @@ const SweepGradient backGroundGradient = SweepGradient(
     paleteBlue,
   ],
 );
-
 
 const SweepGradient secondaryBackGroundGradient = SweepGradient(
   center: FractionalOffset.topLeft,
