@@ -17,3 +17,11 @@ void write(RealmObject schemaObject) {
     realm!.add(schemaObject);
   });
 }
+
+List<Note> getNotes() {
+  if (realm == null) {
+    initRealm();
+  }
+
+  return List.from(realm!.all<Note>());
+}

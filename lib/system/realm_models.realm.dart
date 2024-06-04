@@ -9,17 +9,27 @@ part of 'realm_models.dart';
 // ignore_for_file: type=lint
 class Note extends _Note with RealmEntity, RealmObjectBase, RealmObject {
   Note(
-    String title,
-  ) {
-    RealmObjectBase.set(this, 'title', title);
+    String date, {
+    Iterable<Entry> entries = const [],
+  }) {
+    RealmObjectBase.set(this, 'date', date);
+    RealmObjectBase.set<RealmList<Entry>>(
+        this, 'entries', RealmList<Entry>(entries));
   }
 
   Note._();
 
   @override
-  String get title => RealmObjectBase.get<String>(this, 'title') as String;
+  String get date => RealmObjectBase.get<String>(this, 'date') as String;
   @override
-  set title(String value) => RealmObjectBase.set(this, 'title', value);
+  set date(String value) => RealmObjectBase.set(this, 'date', value);
+
+  @override
+  RealmList<Entry> get entries =>
+      RealmObjectBase.get<Entry>(this, 'entries') as RealmList<Entry>;
+  @override
+  set entries(covariant RealmList<Entry> value) =>
+      throw RealmUnsupportedSetError();
 
   @override
   Stream<RealmObjectChanges<Note>> get changes =>
@@ -34,7 +44,8 @@ class Note extends _Note with RealmEntity, RealmObjectBase, RealmObject {
 
   EJsonValue toEJson() {
     return <String, dynamic>{
-      'title': title.toEJson(),
+      'date': date.toEJson(),
+      'entries': entries.toEJson(),
     };
   }
 
@@ -42,10 +53,12 @@ class Note extends _Note with RealmEntity, RealmObjectBase, RealmObject {
   static Note _fromEJson(EJsonValue ejson) {
     return switch (ejson) {
       {
-        'title': EJsonValue title,
+        'date': EJsonValue date,
+        'entries': EJsonValue entries,
       } =>
         Note(
-          fromEJson(title),
+          fromEJson(date),
+          entries: fromEJson(entries),
         ),
       _ => raiseInvalidEJson(ejson),
     };
@@ -55,7 +68,76 @@ class Note extends _Note with RealmEntity, RealmObjectBase, RealmObject {
     RealmObjectBase.registerFactory(Note._);
     register(_toEJson, _fromEJson);
     return SchemaObject(ObjectType.realmObject, Note, 'Note', [
-      SchemaProperty('title', RealmPropertyType.string),
+      SchemaProperty('date', RealmPropertyType.string),
+      SchemaProperty('entries', RealmPropertyType.object,
+          linkTarget: 'Entry', collectionType: RealmCollectionType.list),
+    ]);
+  }();
+
+  @override
+  SchemaObject get objectSchema => RealmObjectBase.getSchema(this) ?? schema;
+}
+
+class Entry extends _Entry with RealmEntity, RealmObjectBase, EmbeddedObject {
+  Entry(
+    String emotion,
+    String text,
+  ) {
+    RealmObjectBase.set(this, 'emotion', emotion);
+    RealmObjectBase.set(this, 'text', text);
+  }
+
+  Entry._();
+
+  @override
+  String get emotion => RealmObjectBase.get<String>(this, 'emotion') as String;
+  @override
+  set emotion(String value) => RealmObjectBase.set(this, 'emotion', value);
+
+  @override
+  String get text => RealmObjectBase.get<String>(this, 'text') as String;
+  @override
+  set text(String value) => RealmObjectBase.set(this, 'text', value);
+
+  @override
+  Stream<RealmObjectChanges<Entry>> get changes =>
+      RealmObjectBase.getChanges<Entry>(this);
+
+  @override
+  Stream<RealmObjectChanges<Entry>> changesFor([List<String>? keyPaths]) =>
+      RealmObjectBase.getChangesFor<Entry>(this, keyPaths);
+
+  @override
+  Entry freeze() => RealmObjectBase.freezeObject<Entry>(this);
+
+  EJsonValue toEJson() {
+    return <String, dynamic>{
+      'emotion': emotion.toEJson(),
+      'text': text.toEJson(),
+    };
+  }
+
+  static EJsonValue _toEJson(Entry value) => value.toEJson();
+  static Entry _fromEJson(EJsonValue ejson) {
+    return switch (ejson) {
+      {
+        'emotion': EJsonValue emotion,
+        'text': EJsonValue text,
+      } =>
+        Entry(
+          fromEJson(emotion),
+          fromEJson(text),
+        ),
+      _ => raiseInvalidEJson(ejson),
+    };
+  }
+
+  static final schema = () {
+    RealmObjectBase.registerFactory(Entry._);
+    register(_toEJson, _fromEJson);
+    return SchemaObject(ObjectType.embeddedObject, Entry, 'Entry', [
+      SchemaProperty('emotion', RealmPropertyType.string),
+      SchemaProperty('text', RealmPropertyType.string),
     ]);
   }();
 
