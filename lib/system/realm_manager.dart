@@ -4,7 +4,7 @@ import 'package:self_blog/system/realm_models.dart';
 Realm? realm;
 
 void initRealm() {
-  var config = Configuration.local([Note.schema]);
+  var config = Configuration.local([Note.schema, Entry.schema]);
 
   realm = Realm(config);
 }
@@ -15,6 +15,15 @@ void write(RealmObject schemaObject) {
   }
   realm!.write(() {
     realm!.add(schemaObject);
+  });
+}
+
+void updateEntry(Function() callback){
+  if (realm == null) {
+    initRealm();
+  }
+  realm!.write(() {
+    callback();
   });
 }
 

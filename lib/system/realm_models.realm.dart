@@ -80,14 +80,21 @@ class Note extends _Note with RealmEntity, RealmObjectBase, RealmObject {
 
 class Entry extends _Entry with RealmEntity, RealmObjectBase, EmbeddedObject {
   Entry(
+    String hour,
     String emotion,
     String text,
   ) {
+    RealmObjectBase.set(this, 'hour', hour);
     RealmObjectBase.set(this, 'emotion', emotion);
     RealmObjectBase.set(this, 'text', text);
   }
 
   Entry._();
+
+  @override
+  String get hour => RealmObjectBase.get<String>(this, 'hour') as String;
+  @override
+  set hour(String value) => RealmObjectBase.set(this, 'hour', value);
 
   @override
   String get emotion => RealmObjectBase.get<String>(this, 'emotion') as String;
@@ -112,6 +119,7 @@ class Entry extends _Entry with RealmEntity, RealmObjectBase, EmbeddedObject {
 
   EJsonValue toEJson() {
     return <String, dynamic>{
+      'hour': hour.toEJson(),
       'emotion': emotion.toEJson(),
       'text': text.toEJson(),
     };
@@ -121,10 +129,12 @@ class Entry extends _Entry with RealmEntity, RealmObjectBase, EmbeddedObject {
   static Entry _fromEJson(EJsonValue ejson) {
     return switch (ejson) {
       {
+        'hour': EJsonValue hour,
         'emotion': EJsonValue emotion,
         'text': EJsonValue text,
       } =>
         Entry(
+          fromEJson(hour),
           fromEJson(emotion),
           fromEJson(text),
         ),
@@ -136,6 +146,7 @@ class Entry extends _Entry with RealmEntity, RealmObjectBase, EmbeddedObject {
     RealmObjectBase.registerFactory(Entry._);
     register(_toEJson, _fromEJson);
     return SchemaObject(ObjectType.embeddedObject, Entry, 'Entry', [
+      SchemaProperty('hour', RealmPropertyType.string),
       SchemaProperty('emotion', RealmPropertyType.string),
       SchemaProperty('text', RealmPropertyType.string),
     ]);
