@@ -10,7 +10,7 @@ class TopMenuBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding:  EdgeInsets.only(left: 12.5, right: 12.5),
+      padding: EdgeInsets.only(left: 12.5, right: 12.5),
       child: Column(
         children: [
           SizedBox(
@@ -20,7 +20,6 @@ class TopMenuBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               BigText(titleText: "Welcome back", textAlign: TextAlign.center),
-              // TODO Add functionality
               Icon(
                 Icons.menu,
                 color: Colors.white,
