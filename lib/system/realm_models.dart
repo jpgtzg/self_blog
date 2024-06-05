@@ -5,7 +5,6 @@ import 'package:realm/realm.dart';
 
 part 'realm_models.realm.dart';
 
-// TODO MUSIC attribute
 @RealmModel()
 class _Note {
   late String date;
