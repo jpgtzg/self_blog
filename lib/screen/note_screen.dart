@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:self_blog/constants.dart';
 import 'package:self_blog/system/realm_manager.dart';
 import 'package:self_blog/system/realm_models.dart';
-import 'package:self_blog/widgets/bacl_bar.dart';
+import 'package:self_blog/widgets/back_bar.dart';
 import 'package:self_blog/widgets/create_entry_button.dart';
 import 'package:self_blog/widgets/entry_box.dart';
 import 'package:self_blog/widgets/gradient_scaffold.dart';
