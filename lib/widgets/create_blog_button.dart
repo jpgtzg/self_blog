@@ -1,7 +1,9 @@
 // Written by Juan Pablo Gutiérrez
 // 3 06 2024
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:self_blog/constants.dart';
 import 'package:self_blog/system/realm_models.dart';
 
@@ -26,12 +28,13 @@ class CreateBlogbutton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap(),
       child: AspectRatio(
-        aspectRatio: 13 / 4,
+        aspectRatio: 13 / 5,
         child: Container(
           padding: const EdgeInsets.only(
             top: 15,
             bottom: 25,
             left: 25,
+            right: 25,
           ),
           decoration: (secondaryColor != null)
               ? BoxDecoration(
@@ -49,16 +52,18 @@ class CreateBlogbutton extends StatelessWidget {
                   color: primaryColor,
                   borderRadius: BorderRadius.circular(25),
                 ),
-          child: Stack(
+          child: Column(
             children: [
-              Text(
-                titleText,
-                textAlign: TextAlign.center,
-                style: defaultStyle,
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  titleText,
+                  textAlign: TextAlign.center,
+                  style: defaultStyle,
+                ),
               ),
-              Positioned(
-                right: 30,
-                bottom: 0,
+              Align(
+                alignment: Alignment.bottomRight,
                 child: Container(
                   padding: const EdgeInsets.all(2),
                   height: 40,
