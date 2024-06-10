@@ -72,8 +72,7 @@ class _NoteScreenState extends State<NoteScreen> {
               setState(() {
                 updateEntry(() {
                   widget.note.entries.add(
-                    Entry("${DateTime.now().hour} : ${DateTime.now().minute}",
-                        "", ""),
+                    Entry(DateTime.now().toString().substring(10, 16), "", ""),
                   );
                 });
               });
