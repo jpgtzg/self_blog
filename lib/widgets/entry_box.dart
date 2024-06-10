@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:self_blog/constants.dart';
 import 'package:self_blog/system/realm_manager.dart';
 import 'package:self_blog/system/realm_models.dart';
@@ -26,8 +27,10 @@ class _EntryBoxState extends State<EntryBox> {
     super.initState();
 
     // Initialize the controllers with the appropriate text
-    emotionController = TextEditingController(text: widget.note.entries[widget.index].emotion);
-    textController = TextEditingController(text: widget.note.entries[widget.index].text);
+    emotionController =
+        TextEditingController(text: widget.note.entries[widget.index].emotion);
+    textController =
+        TextEditingController(text: widget.note.entries[widget.index].text);
 
     // Add listeners to the controllers
     emotionController.addListener(() {
@@ -47,6 +50,20 @@ class _EntryBoxState extends State<EntryBox> {
     emotionController.dispose();
     textController.dispose();
     super.dispose();
+  }
+
+  String capitalize(String value) {
+    var result = value[0].toUpperCase();
+    bool cap = true;
+    for (int i = 1; i < value.length; i++) {
+      if (value[i - 1] == " " && cap == true) {
+        result = result + value[i].toUpperCase();
+      } else {
+        result = result + value[i];
+        cap = false;
+      }
+    }
+    return result;
   }
 
   @override
@@ -80,6 +97,13 @@ class _EntryBoxState extends State<EntryBox> {
               hintStyle: noteEmotionHideTextStyle,
             ),
             controller: emotionController,
+            keyboardType: TextInputType.text,
+            //textCapitalization: TextCapitalization.characters,
+            onChanged: (value) {
+              emotionController.value = TextEditingValue(
+                  text: capitalize(value),
+                  selection: emotionController.selection);
+            },
           ),
           TextField(
             style: noteEntryShowTextStyle,
@@ -89,7 +113,13 @@ class _EntryBoxState extends State<EntryBox> {
               hintText: "Enter your entry here...",
               hintStyle: noteEntryHideTextStyle,
             ),
+            onChanged: (value) {
+              textController.value = TextEditingValue(
+                  text: capitalize(value), selection: textController.selection);
+            },
             controller: textController,
+            keyboardType: TextInputType.text,
+            //textCapitalization: TextCapitalization.characters,
           ),
         ],
       ),
