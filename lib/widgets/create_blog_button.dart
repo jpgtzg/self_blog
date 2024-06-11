@@ -7,14 +7,14 @@ import 'package:flutter/widgets.dart';
 import 'package:self_blog/constants.dart';
 import 'package:self_blog/system/realm_models.dart';
 
-class CreateBlogbutton extends StatelessWidget {
+class CreateBlogButton extends StatelessWidget {
   final String titleText;
   final Color primaryColor;
   final Color? secondaryColor;
   final Color buttonColor;
   final Note note;
   final Function onTap;
-  const CreateBlogbutton(
+  const CreateBlogButton(
       {required this.titleText,
       required this.primaryColor,
       this.secondaryColor,

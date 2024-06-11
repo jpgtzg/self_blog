@@ -1,3 +1,6 @@
+// Written by Juan Pablo Gutiérrez
+// 3 06 2024
+
 import 'package:flutter/material.dart';
 import 'package:self_blog/constants.dart';
 import 'package:self_blog/system/realm_manager.dart';
@@ -46,7 +49,7 @@ class _NoteScreenState extends State<NoteScreen> {
               ],
             ),
           ),
-          const StandardSpacer(height: standartSpacerHeight),
+          const StandardSpacer(value: standardSpacerHeight, direction: Direction.vertical,),
           Expanded(
             child: ListView.builder(
               itemCount: widget.note.entries.length,
@@ -60,13 +63,13 @@ class _NoteScreenState extends State<NoteScreen> {
                       index: widget.note.entries.length - index - 1,
                       parentUpdate: deleteEntry,
                     ),
-                    const StandardSpacer(height: standartSpacerHeight),
+                    const StandardSpacer(value: standardSpacerHeight, direction: Direction.vertical,),
                   ],
                 );
               },
             ),
           ),
-          const StandardSpacer(height: standartSpacerHeight),
+          const StandardSpacer(value: standardSpacerHeight, direction: Direction.vertical,),
           CreateEntryButton(
             onTap: () {
               setState(() {
@@ -78,7 +81,7 @@ class _NoteScreenState extends State<NoteScreen> {
               });
             },
           ),
-          const StandardSpacer(height: standartSpacerHeight),
+          const StandardSpacer(value: standardSpacerHeight, direction: Direction.vertical,),
         ],
       ),
     );
