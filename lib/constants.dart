@@ -73,7 +73,7 @@ const TextStyle noteEntryShowTextStyle = TextStyle(
 
 
 /* Widget configuration */
-const double standartSpacerHeight = 30;
+const double standardSpacerHeight = 30;
 
 const double mediumSpacerHeight = 20;
 
