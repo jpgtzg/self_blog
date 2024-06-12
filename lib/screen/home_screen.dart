@@ -126,11 +126,27 @@ class _HomeScreenState extends State<HomeScreen> {
                       value: standardSpacerHeight,
                       direction: Direction.vertical,
                     ),
-                    if (isCalendarVisible)
-                      Calendar(onDateChanged: onSearchTextChanged),
-                    const StandardSpacer(
-                      value: standardSpacerHeight,
-                      direction: Direction.vertical,
+                    AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 200),
+                      transitionBuilder:
+                          (Widget child, Animation<double> animation) {
+                        return FadeTransition(opacity: animation, child: child);
+                      },
+                      child: isCalendarVisible
+                          ? Column(
+                              children: [
+                                Calendar(
+                                  onDateChanged: onSearchTextChanged,
+                                  key: ValueKey<bool>(isCalendarVisible),
+                                ),
+                                const StandardSpacer(
+                                  value: standardSpacerHeight,
+                                  direction: Direction.vertical,
+                                ),
+                              ],
+                            )
+                          : SizedBox.shrink(
+                              key: ValueKey<bool>(isCalendarVisible)),
                     ),
                     CreateBlogButton(
                       titleText: "Write today's blog",
