@@ -1,5 +1,5 @@
 name: self_blog
-description: "A new Flutter project."
+description: "Mental health app"
 publish_to: 'none'
 version: 0.1.0
 
@@ -10,12 +10,18 @@ dependencies:
   calendar_date_picker2: ^1.0.3
   flutter:
     sdk: flutter
+  flutter_launcher_icons: ^0.13.1
   realm: ^2.3.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+
+flutter_icons:
+  image_path: "icons/app_logo.png"
+  android: true
+  ios: true
 
 flutter:
   uses-material-design: true
