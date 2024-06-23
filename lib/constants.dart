@@ -98,7 +98,6 @@ const Color paleteDarkColar = Color(0xFFFF4500);
 
 const SweepGradient backGroundGradient = SweepGradient(
   center: FractionalOffset.topLeft,
-  transform: GradientRotation(-math.pi / 4),
   colors: [
     paleteDarkBlue,
     paleteLightBlue,
