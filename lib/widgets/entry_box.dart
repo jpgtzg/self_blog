@@ -53,6 +53,10 @@ class _EntryBoxState extends State<EntryBox> {
   }
 
   String capitalize(String value) {
+    if (value.isEmpty) {
+      return value; 
+    }
+
     var result = value[0].toUpperCase();
     bool cap = true;
     for (int i = 1; i < value.length; i++) {
