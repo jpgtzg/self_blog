@@ -30,6 +30,8 @@ class GradientScaffold extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(gradient: gradient),
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
           ),
           isCentered
               ? Center(
