@@ -54,7 +54,7 @@ class _EntryBoxState extends State<EntryBox> {
 
   String capitalize(String value) {
     if (value.isEmpty) {
-      return value; 
+      return value;
     }
 
     var result = value[0].toUpperCase();
@@ -100,6 +100,7 @@ class _EntryBoxState extends State<EntryBox> {
               hintText: "Enter your emotion here...",
               hintStyle: noteEmotionHideTextStyle,
             ),
+            spellCheckConfiguration: const SpellCheckConfiguration(),
             controller: emotionController,
             keyboardType: TextInputType.text,
             //textCapitalization: TextCapitalization.characters,
@@ -121,6 +122,8 @@ class _EntryBoxState extends State<EntryBox> {
               textController.value = TextEditingValue(
                   text: capitalize(value), selection: textController.selection);
             },
+            
+            spellCheckConfiguration: const SpellCheckConfiguration(),
             controller: textController,
             keyboardType: TextInputType.text,
             //textCapitalization: TextCapitalization.characters,
