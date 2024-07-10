@@ -122,7 +122,6 @@ class _EntryBoxState extends State<EntryBox> {
               textController.value = TextEditingValue(
                   text: capitalize(value), selection: textController.selection);
             },
-            
             spellCheckConfiguration: const SpellCheckConfiguration(),
             controller: textController,
             keyboardType: TextInputType.text,
