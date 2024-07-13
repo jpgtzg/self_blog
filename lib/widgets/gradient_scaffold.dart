@@ -28,7 +28,7 @@ class GradientScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: drawer,
+      endDrawer: drawer,
       body: Stack(
         children: [
           Container(
