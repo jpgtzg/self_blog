@@ -13,10 +13,10 @@ class GradientScaffold extends StatelessWidget {
 
   const GradientScaffold({
     required this.gradient,
-    required this.body,
     required this.isCentered,
     required this.isInSafeArea,
     required this.padding,
+    required this.body,
     this.drawer,
     super.key,
   });
