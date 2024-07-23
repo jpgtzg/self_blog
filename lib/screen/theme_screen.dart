@@ -21,7 +21,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
       gradient: backGroundGradient,
       isCentered: true,
       isInSafeArea: true,
-      padding: EdgeInsets.only(left: 15.0, right: 15),
+      padding: EdgeInsets.only(left: 15.0, right: 15.0),
       body: Column(
         children: [
           BackBar(),
