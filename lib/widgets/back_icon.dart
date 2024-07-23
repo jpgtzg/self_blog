@@ -1,5 +1,5 @@
-/// Written by Juan Pablo Gutiérrez
-/// 12 - 10 - 2022
+// Written by Juan Pablo Gutiérrez
+// 12 - 10 - 2022
 
 import 'package:flutter/material.dart';
 import 'package:self_blog/constants.dart';
