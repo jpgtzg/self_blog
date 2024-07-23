@@ -7,7 +7,8 @@ import 'package:self_blog/constants.dart';
 
 class ColorPickerBox extends StatelessWidget {
   final String boxTitle;
-  const ColorPickerBox({super.key, required this.boxTitle});
+  final Function(Color) onColorChanged;
+  const ColorPickerBox({super.key, required this.boxTitle, required this.onColorChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +24,7 @@ class ColorPickerBox extends StatelessWidget {
           showColorCode: true,
           enableTonalPalette: true,
           enableShadesSelection: false,
-          onColorChanged: (Color color) {
-            // Handle color change
-          },
+          onColorChanged: onColorChanged,
           pickersEnabled: const <ColorPickerType, bool>{
             ColorPickerType.both: false,
             ColorPickerType.primary: false,
