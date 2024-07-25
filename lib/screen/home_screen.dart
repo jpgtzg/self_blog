@@ -6,6 +6,7 @@ import 'package:self_blog/constants.dart';
 import 'package:self_blog/screen/note_screen.dart';
 import 'package:self_blog/system/realm_manager.dart';
 import 'package:self_blog/system/realm_models.dart';
+import 'package:self_blog/system/user_settings.dart';
 import 'package:self_blog/widgets/calendar.dart';
 import 'package:self_blog/widgets/create_blog_button.dart';
 import 'package:self_blog/widgets/gradient_scaffold.dart';
@@ -77,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return GradientScaffold(
-      gradient: backGroundGradient,
+      gradient: userSettings.primaryGradient,
       isCentered: true,
       isInSafeArea: true,
       drawer: const SideBar(),

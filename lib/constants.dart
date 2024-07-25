@@ -79,7 +79,7 @@ const double mediumSpacerHeight = 20;
 
 const double smallerSpacerHeight = 10;
 
-/* Color configuration */
+/* Default color configuration */
 const Color paletePink = Color(0xffFF128E);
 const Color paletePurple = Color(0xff8310DE);
 const Color paleteBlue = Color(0xff1D3BF4);
