@@ -38,6 +38,9 @@ class _ThemeScreenState extends State<ThemeScreen> {
                   ColorPickerBox(
                     boxTitle: "Select Primary color",
                     onColorChanged: (Color color) {
+                      setState(() {
+                        primaryColor = color;
+                      });
                       // ignore: avoid_print
                       print(color);
                     },
@@ -45,6 +48,19 @@ class _ThemeScreenState extends State<ThemeScreen> {
                   ColorPickerBox(
                     boxTitle: "Select Secondary color",
                     onColorChanged: (Color color) {
+                      setState(() {
+                        secondaryColor = color;
+                      });
+                      // ignore: avoid_print
+                      print(color);
+                    },
+                  ),
+                  ColorPickerBox(
+                    boxTitle: "Select Tertiary color",
+                    onColorChanged: (Color color) {
+                      setState(() {
+                        tertiaryColor = color;
+                      });
                       // ignore: avoid_print
                       print(color);
                     },
