@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:self_blog/constants.dart';
 import 'package:self_blog/system/realm_manager.dart';
 import 'package:self_blog/system/realm_models.dart';
+import 'package:self_blog/system/user_settings.dart';
 import 'package:self_blog/widgets/back_bar.dart';
 import 'package:self_blog/widgets/create_entry_button.dart';
 import 'package:self_blog/widgets/entry_box.dart';
@@ -31,7 +32,7 @@ class _NoteScreenState extends State<NoteScreen> {
   @override
   Widget build(BuildContext context) {
     return GradientScaffold(
-      gradient: backGroundGradient,
+      gradientCall: getPrimaryGradient(),
       isCentered: true,
       isInSafeArea: true,
       padding: const EdgeInsets.only(left: 15.0, right: 15.0),

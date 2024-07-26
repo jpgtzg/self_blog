@@ -78,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return GradientScaffold(
-      gradient: userSettings.primaryGradient,
+      gradientCall: getPrimaryGradient(),
       isCentered: true,
       isInSafeArea: true,
       drawer: const SideBar(),

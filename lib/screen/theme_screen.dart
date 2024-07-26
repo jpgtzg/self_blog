@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:self_blog/constants.dart';
+import 'package:self_blog/system/user_settings.dart';
 import 'package:self_blog/widgets/back_bar.dart';
 import 'package:self_blog/widgets/color_picker_box.dart';
 import 'package:self_blog/widgets/gradient_scaffold.dart';
@@ -19,7 +20,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
   @override
   Widget build(BuildContext context) {
     return GradientScaffold(
-      gradient: backGroundGradient,
+      gradientCall: getPrimaryGradient(),
       isCentered: true,
       isInSafeArea: true,
       padding: const EdgeInsets.only(left: 15.0, right: 15.0),
