@@ -5,11 +5,9 @@
 import 'package:flutter/material.dart';
 import 'package:self_blog/screen/home_screen.dart';
 import 'package:self_blog/system/realm_manager.dart';
-import 'package:self_blog/system/user_settings.dart';
 
 void main() {
   initRealm();
-  initUserSettings();
 
   runApp(const MainApp());
 }
