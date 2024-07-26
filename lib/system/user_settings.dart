@@ -5,62 +5,48 @@ import 'package:flutter/material.dart';
 import 'package:self_blog/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-late UserSettings userSettings;
+final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
-void initUserSettings() async {
-  final Future<SharedPreferences> prefs = SharedPreferences.getInstance();
-  userSettings = UserSettings(prefs: await prefs);
-  userSettings.primaryColor = paleteDarkBlue;
-  userSettings.secondaryColor = paleteLightBlue;
-  userSettings.tertiaryColor = paleteBlue;
+Future<Color> getPrimaryColor() async {
+  SharedPreferences prefs = await _prefs;
+
+  final color = prefs.getInt('primaryColor') ?? paleteDarkBlue.value;
+  return Color(color);
 }
 
-class UserSettings {
-  late SharedPreferences prefs;
-  late SweepGradient primaryGradient;
-  late SweepGradient secondaryGradient;
+Future<Color> getSecondaryColor() async {
+  SharedPreferences prefs = await _prefs;
 
-  UserSettings({required this.prefs});
+  final color = prefs.getInt('secondaryColor') ?? paleteLightBlue.value;
+  return Color(color);
+}
 
-  Color get primaryColor {
-    final color = prefs.getInt('primaryColor') ?? 0xFF000000;
-    return Color(color);
-  }
+Future<Color> getTertiaryColor() async {
+  SharedPreferences prefs = await _prefs;
 
-  Color get secondaryColor {
-    final color = prefs.getInt('secondaryColor') ?? 0xFF000000;
-    return Color(color);
-  }
+  final color = prefs.getInt('tertiaryColor') ?? paleteBlue.value;
+  return Color(color);
+}
 
-  Color get tertiaryColor {
-    final color = prefs.getInt('tertiaryColor') ?? 0xFF000000;
-    return Color(color);
-  }
+Future<SweepGradient> getPrimaryGradient() async {
+  Color primaryColor = await getPrimaryColor();
+  Color secondaryColor = await getSecondaryColor();
+  Color tertiaryColor = await getTertiaryColor();
 
-  set primaryColor(Color color) {
-    prefs.setInt('primaryColor', color.value);
+  return SweepGradient(
+    center: FractionalOffset.topLeft,
+    colors: [primaryColor, secondaryColor, tertiaryColor],
+  );
+}
 
-    primaryGradient = SweepGradient(
-      center: FractionalOffset.topLeft,
-      colors: [color, secondaryColor, tertiaryColor],
-    );
-  }
+set primaryColor(Color color) {
+  _prefs.then((value) => value.setInt('primaryColor', color.value));
+}
 
-  set secondaryColor(Color color) {
-    prefs.setInt('secondaryColor', color.value);
+set secondaryColor(Color color) {
+  _prefs.then((value) => value.setInt('secondaryColor', color.value));
+}
 
-    primaryGradient = SweepGradient(
-      center: FractionalOffset.topLeft,
-      colors: [primaryColor, color, tertiaryColor],
-    );
-  }
-
-  set tertiaryColor(Color color) {
-    prefs.setInt('tertiaryColor', color.value);
-
-    primaryGradient = SweepGradient(
-      center: FractionalOffset.topLeft,
-      colors: [primaryColor, secondaryColor, color],
-    );
-  }
+set tertiaryColor(Color color) {
+  _prefs.then((value) => value.setInt('tertiaryColor', color.value));
 }
