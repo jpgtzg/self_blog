@@ -41,8 +41,6 @@ class _ThemeScreenState extends State<ThemeScreen> {
                       setState(() {
                         primaryColor = color;
                       });
-                      // ignore: avoid_print
-                      print(color);
                     },
                   ),
                   ColorPickerBox(
@@ -51,8 +49,6 @@ class _ThemeScreenState extends State<ThemeScreen> {
                       setState(() {
                         secondaryColor = color;
                       });
-                      // ignore: avoid_print
-                      print(color);
                     },
                   ),
                   ColorPickerBox(
@@ -61,8 +57,6 @@ class _ThemeScreenState extends State<ThemeScreen> {
                       setState(() {
                         tertiaryColor = color;
                       });
-                      // ignore: avoid_print
-                      print(color);
                     },
                   ),
                 ],
