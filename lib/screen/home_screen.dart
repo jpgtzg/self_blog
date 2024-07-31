@@ -78,10 +78,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return GradientScaffold(
-      gradientCall: getPrimaryGradient(),
+      getGradientFunction: getPrimaryGradient(),
       isCentered: true,
       isInSafeArea: true,
-      drawer: const SideBar(),
+      drawer: SideBar(
+        reloadFunction: () => setState(() {}),
+      ),
       padding: const EdgeInsets.only(left: 15.0, right: 15.0),
       body: Builder(builder: (context) {
         return Column(
@@ -167,6 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemCount: filteredNotes.length,
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
+                      reverse: true,
                       itemBuilder: (context, index) {
                         return Column(
                           children: [

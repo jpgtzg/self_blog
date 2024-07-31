@@ -32,7 +32,7 @@ class _NoteScreenState extends State<NoteScreen> {
   @override
   Widget build(BuildContext context) {
     return GradientScaffold(
-      gradientCall: getPrimaryGradient(),
+      getGradientFunction: getPrimaryGradient(),
       isCentered: true,
       isInSafeArea: true,
       padding: const EdgeInsets.only(left: 15.0, right: 15.0),

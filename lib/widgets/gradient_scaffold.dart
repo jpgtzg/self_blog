@@ -4,7 +4,7 @@
 import 'package:flutter/material.dart';
 
 class GradientScaffold extends StatelessWidget {
-  final Future<SweepGradient> gradientCall;
+  final Future<SweepGradient> getGradientFunction;
   final Widget body;
   final bool isCentered;
   final bool isInSafeArea;
@@ -12,7 +12,7 @@ class GradientScaffold extends StatelessWidget {
   final EdgeInsetsGeometry padding;
 
   const GradientScaffold({
-    required this.gradientCall,
+    required this.getGradientFunction,
     required this.isCentered,
     required this.isInSafeArea,
     required this.padding,
@@ -32,7 +32,7 @@ class GradientScaffold extends StatelessWidget {
       body: Stack(
         children: [
           FutureBuilder(
-            future: gradientCall,
+            future: getGradientFunction,
             builder: (context, snapshot) {
               return Container(
                 decoration: BoxDecoration(gradient: snapshot.data),
