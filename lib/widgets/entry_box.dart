@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:self_blog/constants.dart';
 import 'package:self_blog/system/realm_manager.dart';
 import 'package:self_blog/system/realm_models.dart';
